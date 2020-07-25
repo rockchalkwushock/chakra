@@ -2,6 +2,8 @@ defmodule Chakra.Links.Link do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @primary_key {:hash, HashId, [autogenerate: true]}
+  @derive {Phoenix.Param, key: :hash}
   schema "links" do
     field :url, :string
 
