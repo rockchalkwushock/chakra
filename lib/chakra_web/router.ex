@@ -7,6 +7,7 @@ defmodule ChakraWeb.Router do
 
   scope "/api", ChakraWeb do
     pipe_through :api
+    resources "/links", LinkController, except: [:edit]
   end
 
   # Enables LiveDashboard only for development
