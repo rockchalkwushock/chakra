@@ -29,3 +29,6 @@ chakra-*.tar
 
 # Secrets
 *.secret.exs
+
+# Examples
+*.example.exs
