@@ -40,4 +40,13 @@ defmodule ChakraWeb.LinkController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def get_and_redirect(conn, %{"hash" => hash}) do
+    url =
+      hash
+      |> Links.get_link!()
+      |> Map.get(:url)
+
+    redirect(conn, external: url)
+  end
 end

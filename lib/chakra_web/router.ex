@@ -10,6 +10,10 @@ defmodule ChakraWeb.Router do
     resources "/links", LinkController, except: [:edit]
   end
 
+  scope "/", ChakraWeb do
+    get "/:hash", LinkController, :get_and_redirect
+  end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

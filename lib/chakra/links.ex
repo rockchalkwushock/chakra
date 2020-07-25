@@ -35,7 +35,7 @@ defmodule Chakra.Links do
       ** (Ecto.NoResultsError)
 
   """
-  def get_link!(id), do: Repo.get!(Link, id)
+  def get_link!(hash), do: Repo.get!(Link, hash)
 
   @doc """
   Creates a link.
