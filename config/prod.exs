@@ -13,6 +13,6 @@ config :chakra, ChakraWeb.Endpoint,
   load_from_system_env: true,
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
   server: true,
-  url: [host: "#{app_name}.gigalixirapp.com", port: 443]
+  url: [host: "#{System.get_env("APP_NAME")}.gigalixirapp.com", port: 443]
 
 config :logger, level: :info
