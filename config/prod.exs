@@ -1,16 +1,24 @@
-use Mix.Config
+import Config
+
+app_name = System.get_env("APP_NAME")
+database_url = System.get_env("DATABASE_URL")
+pool_size = System.get_env("POOL_SIZE")
+port = System.get_env("PORT")
+secret_key_base = System.get_env("SECRET_KEY_BASE")
 
 config :chakra, Chakra.Repo,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  adapter: Ecto.Adapters.Postgres,
+  # Set by Gigalixir
+  database: "",
+  pool_size: String.to_integer(port || "10"),
+  ssl: true,
+  url: database_url
 
-config :chakra, Chakra.Endpoint,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json",
-  http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+config :chakra, ChakraWeb.Endpoint,
+  http: [port: {:system, "PORT"}],
+  load_from_system_env: true,
+  secret_key_base: secret_key_base,
+  server: true,
+  url: [host: "${APP_NAME}.gigalixirapp.com", port: 443]
 
 config :logger, level: :info
